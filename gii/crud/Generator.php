@@ -226,7 +226,7 @@ class Generator extends \yii\gii\Generator
             } elseif ($attribute === 'url') {
                 return "\$form->field(\$model, '$attribute')->widget(\\sibds\\widgets\\translitInput::className(), ['fromField'=>'name'])";
             } elseif ($attribute === 'layout') {
-                return "\$form->field(\$model, , '$attribute')->widget(\\kartik\\select2\\Select2::className(), [
+                return "\$form->field(\$model, '$attribute')->widget(\\kartik\\select2\\Select2::className(), [
         'data'=>\\Yii::\$app->controller->getLayouts(),
         'options' => ['placeholder' => 'Значение по умолчанию'],
         'addon' => [
@@ -281,7 +281,7 @@ class Generator extends \yii\gii\Generator
                 }
             } else {
                 if ($attribute === 'layout') {
-                    return "\$form->field(\$model, , '$attribute')->widget(\\kartik\\select2\\Select2::className(), [
+                    return "\$form->field(\$model, '$attribute')->widget(\\kartik\\select2\\Select2::className(), [
         'data'=>\\Yii::\$app->controller->getLayouts(),
         'options' => ['placeholder' => 'Значение по умолчанию'],
         'addon' => [
