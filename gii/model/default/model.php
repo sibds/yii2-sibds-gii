@@ -34,6 +34,8 @@ use Yii;
 */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
+    // public static $BEFORE_QUERY = []; // for admin with categories
+    // public static $BEFORE_QUERY = ['removed' => 0]; // for admin
     /**
     * @inheritdoc
     */
