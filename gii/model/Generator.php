@@ -197,7 +197,22 @@ class Generator extends \yii\gii\Generator
             } elseif (!strcasecmp($column->name, 'id')) {
                 $labels[$column->name] = 'ID';
             } else {
-                $label = Inflector::camel2words($column->name);
+                $standartLabels = [
+                    'name' => 'Название',
+                    'url' => 'Ссылка (URL)',
+                    'image' => 'Изображение',
+                    'annotation' => 'Аннотация',
+                    'description' => 'Описание',
+                    'content' => 'Содержание',
+                    'layout' => 'Слой',
+                    'locked' => 'Заблокирован',
+                    'category_id' => 'Категория',
+                ];
+                if(array_key_exists($column->name, $standartLabels)){
+                    $label = $standartLabels[$column->name];
+                }else{
+                    $label = Inflector::camel2words($column->name);
+                }
                 if (!empty($label) && substr_compare($label, ' id', -3, 3, true) === 0) {
                     $label = substr($label, 0, -3) . ' ID';
                 }
