@@ -246,7 +246,10 @@ class Generator extends \yii\gii\Generator
                 case Schema::TYPE_SMALLINT:
                 case Schema::TYPE_INTEGER:
                 case Schema::TYPE_BIGINT:
-                    $types['integer'][] = $column->name;
+                    if($column->size==1)
+                        $types['boolean'][] = $column->name;
+                    else
+                        $types['integer'][] = $column->name;
                     break;
                 case Schema::TYPE_BOOLEAN:
                     $types['boolean'][] = $column->name;
