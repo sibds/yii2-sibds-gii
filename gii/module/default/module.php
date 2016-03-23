@@ -13,6 +13,8 @@ echo "<?php\n";
 
 namespace <?= $ns ?>;
 
+use Yii;
+
 /**
 * <?= $generator->moduleID ?> module definition class
 */
@@ -23,13 +25,46 @@ class <?= $className ?> extends \yii\base\Module
     */
     public $controllerNamespace = '<?= $generator->getControllerNamespace() ?>';
 
+    public $defaultRoute = '<?= $generator->moduleID ?>/list';
+
     /**
     * @inheritdoc
     */
     public function init()
     {
         parent::init();
-
-        // custom initialization code goes here
+        $this->registerTranslations();
     }
+
+    public function registerTranslations()
+    {
+        Yii::$app->i18n->translations['modules/<?= $generator->moduleID ?>/*'] = [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'sourceLanguage' => 'ru-RU',
+            'basePath' => '@app/modules/<?= $generator->moduleID ?>/messages',
+            'fileMap' => [
+                'modules/<?= $generator->moduleID ?>/<?= $generator->moduleID ?>' => '<?= $generator->moduleID ?>.php',
+                'modules/<?= $generator->moduleID ?>/form' => 'form.php',
+            ],
+        ];
+    }
+
+    public static function t($category, $message, $params = [], $language = null)
+    {
+        if(!array_key_exists('modules/<?= $generator->moduleID ?>/*', Yii::$app->i18n->translations))
+        {
+            Yii::$app->i18n->translations['modules/<?= $generator->moduleID ?>/*'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'sourceLanguage' => 'ru-RU',
+                'basePath' => '@app/modules/<?= $generator->moduleID ?>/messages',
+                'fileMap' => [
+                    'modules/<?= $generator->moduleID ?>/<?= $generator->moduleID ?>' => '<?= $generator->moduleID ?>.php',
+                    'modules/<?= $generator->moduleID ?>/form' => 'form.php',
+                ],
+            ];
+        }
+
+        return Yii::t('modules/<?= $generator->moduleID ?>/' . $category, $message, $params, $language);
+    }
+
 }
