@@ -11,6 +11,7 @@ namespace sibds\gii\module;
 use \Yii;
 use yii\gii\CodeFile;
 use yii\helpers\StringHelper;
+use yii\bootstrap\Html;
 
 class Generator extends \yii\gii\Generator
 {
