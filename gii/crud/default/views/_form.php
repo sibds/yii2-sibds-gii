@@ -27,6 +27,12 @@ use yii\widgets\ActiveForm;
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form">
 
     <?= "<?php " ?>$form = ActiveForm::begin(); ?>
+    
+    <?= "<?php " ?>
+    if($model->hasErrors()){
+        echo $form->errorSummary($model);
+    }
+    ?>
 
     <?php foreach ($generator->getColumnNames() as $attribute) {
         if(in_array($attribute, ['created_at', 'created_by', 'updated_at', 'updated_by',
