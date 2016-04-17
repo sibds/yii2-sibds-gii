@@ -15,5 +15,5 @@ $moduleId = $generator->moduleID;
 echo "<?php\n";
 ?>
 return [
-['label' => '<?=$className?>', 'url' => ['/<?=$moduleId?>/<?=$moduleId?>/list'], 'icon' => 'fa fa-circle-o'],
+    ['label' => '<?=$className?>', 'url' => ['/<?=$moduleId?>/<?=$moduleId?>/list'], 'icon' => 'fa fa-circle-o'],
 ];
