@@ -18,7 +18,7 @@ echo "<?php\n";
 namespace <?= $generator->ns ?>;
 
 use Yii;
-
+<?= $generator->ns=='app\models'?'':'use '.str_replace('\models', '\Module', $generator->ns).";\n"?>
 /**
 * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
 *
