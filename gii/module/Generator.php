@@ -93,7 +93,7 @@ EOD;
      */
     public function requiredTemplates()
     {
-        return ['module.php', 'controller.php', 'view.php', 'json.php', 'message.php'];
+        return ['module.php', 'controller.php', 'view.php', 'json.php', 'menu.php', 'message.php'];
     }
     /**
      * @inheritdoc
@@ -125,6 +125,10 @@ EOD;
         $files[] = new CodeFile(
             $modulePath . '/views/default/index.php',
             $this->render("view.php")
+        );
+        $files[] = new CodeFile(
+            $modulePath . '/views/_menu.php',
+            $this->render('menu.php')
         );
         return $files;
     }
