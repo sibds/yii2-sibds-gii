@@ -12,6 +12,7 @@ use \Yii;
 use yii\gii\CodeFile;
 use yii\helpers\StringHelper;
 use yii\bootstrap\Html;
+use yii\rest\Controller;
 
 class Generator extends \yii\gii\Generator
 {
@@ -92,7 +93,7 @@ EOD;
      */
     public function requiredTemplates()
     {
-        return ['module.php', 'controller.php', 'view.php', 'json.php'];
+        return ['module.php', 'controller.php', 'view.php', 'json.php', 'message.php'];
     }
     /**
      * @inheritdoc
@@ -104,6 +105,14 @@ EOD;
         $files[] = new CodeFile(
             $modulePath.'/module.json',
             $this->render("json.php")
+        );
+        $files[] = new CodeFile(
+            $modulePath . '/messages/ru/' . $this->moduleID . '.php',
+            $this->render('message.php')
+        );
+        $files[] = new CodeFile(
+            $modulePath . '/messages/en/' . $this->moduleID . '.php',
+            $this->render('message.php')
         );
         $files[] = new CodeFile(
             $modulePath . '/' . StringHelper::basename($this->moduleClass) . '.php',
