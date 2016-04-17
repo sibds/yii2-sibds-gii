@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 
     <?php foreach ($generator->getColumnNames() as $attribute) {
         if(in_array($attribute, ['created_at', 'created_by', 'updated_at', 'updated_by',
-        'tree', 'lft', 'rgt', 'depth']))
+        'tree', 'lft', 'rgt', 'depth', 'order']))
             continue;
 
         if (in_array($attribute, $safeAttributes)) {
