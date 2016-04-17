@@ -92,7 +92,7 @@ EOD;
      */
     public function requiredTemplates()
     {
-        return ['module.php', 'controller.php', 'view.php'];
+        return ['module.php', 'controller.php', 'view.php', 'json.php'];
     }
     /**
      * @inheritdoc
@@ -101,6 +101,10 @@ EOD;
     {
         $files = [];
         $modulePath = $this->getModulePath();
+        $files[] = new CodeFile(
+            $modulePath.'/module.json',
+            $this->render("json.php")
+        );
         $files[] = new CodeFile(
             $modulePath . '/' . StringHelper::basename($this->moduleClass) . '.php',
             $this->render("module.php")
