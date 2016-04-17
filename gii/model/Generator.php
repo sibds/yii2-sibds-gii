@@ -183,6 +183,15 @@ class Generator extends \yii\gii\Generator
         }
         return $files;
     }
+    public function generateString($string = '', $placeholders = [])
+    {
+        $string = parent::generateString($string, $placeholders);
+        if($this->ns!='app\models' && strpos($string, '::t')>0){
+            return str_replace('Yii::t', 'Module::t', $string);
+        }
+        return $string;
+    }
+
     /**
      * Generates the attribute labels for the specified table.
      * @param \yii\db\TableSchema $table the table schema
