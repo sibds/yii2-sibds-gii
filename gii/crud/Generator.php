@@ -241,7 +241,9 @@ class Generator extends \yii\gii\Generator
         }
         $column = $tableSchema->columns[$attribute];
         if ($column->phpType === 'boolean') {
-            return "\$form->field(\$model, '$attribute')->checkbox()";
+            return "\$form->field(\$model, '$attribute', ['template' => '{input}{label}{error}{hint}',])->
+widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]]) ?>";
+            //return "\$form->field(\$model, '$attribute')->checkbox()";
         } elseif ($column->type === 'text') {
             if($attribute === 'url') {
                 return "\$form->field(\$model, '$attribute')->widget(\\sibds\\widgets\\translitInput::className(), ['fromField'=>'name'])";
@@ -275,7 +277,9 @@ class Generator extends \yii\gii\Generator
                 . preg_replace("/\n\s*/", ' ', VarDumper::export($dropDownOptions)) . ", ['prompt' => ''])";
             } elseif ($column->phpType !== 'string' || $column->size === null) {
                 if (preg_match('/^(removed|locked)$/i', $column->name)) {
-                    return "\$form->field(\$model, '$attribute')->checkbox()";
+                    return "\$form->field(\$model, '$attribute', ['template' => '{input}{label}{error}{hint}',])->
+widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]]) ?>";
+                    //return "\$form->field(\$model, '$attribute')->checkbox()";
                 } else {
                     return "\$form->field(\$model, '$attribute')->$input()";
                 }
