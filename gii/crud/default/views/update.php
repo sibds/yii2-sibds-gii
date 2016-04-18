@@ -9,6 +9,7 @@ use yii\helpers\StringHelper;
 $urlParams = $generator->generateUrlParams();
 
 echo "<?php\n";
+$nameModule = $generator->generateString(' {modelClass}: ', ['modelClass' => Inflector::camel2words(StringHelper::basename($generator->modelClass))]);
 ?>
 
 use yii\helpers\Html;
@@ -16,10 +17,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
-$this->title = <?= $generator->generateString('Update {modelClass}: ', ['modelClass' => Inflector::camel2words(StringHelper::basename($generator->modelClass))]) ?> . ' ' . $model-><?= $generator->getNameAttribute() ?>;
+$this->title = ($model->isNewRecord?<?= $generator->generateString('Create') ?>.<?=$nameModule?>:<?= $generator->generateString('Update') ?>.<?=$nameModule?>) . ' ' . $model-><?= $generator->getNameAttribute() ?>;
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['list']];
-$this->params['breadcrumbs'][] = ['label' => $model-><?= $generator->getNameAttribute() ?>, 'url' => ['update', <?= $urlParams ?>]];
-$this->params['breadcrumbs'][] = <?= $generator->generateString('Update') ?>;
+if(!$model->isNewRecord)
+    $this->params['breadcrumbs'][] = ['label' => $model-><?= $generator->getNameAttribute() ?>, 'url' => ['update', <?= $urlParams ?>]];
+$this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateString('Create') ?>:<?= $generator->generateString('Update') ?>);
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
 
