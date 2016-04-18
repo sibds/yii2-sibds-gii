@@ -292,7 +292,9 @@ class Generator extends \yii\gii\Generator
     ])";
                 } elseif (preg_match('/^(file|image)$/i', $attribute)) {
                     return "\$form->field(\$model, '$attribute')->widget(\\sibds\\widgets\\InputFile::className())";
-                }else{
+                } elseif ($attribute === 'url') {
+                    return "\$form->field(\$model, '$attribute')->widget(\\sibds\\widgets\\translitInput::className(), ['fromField'=>'name'])";
+                } else {
                     return "\$form->field(\$model, '$attribute')->$input(['maxlength' => true])";
                 }
             }
