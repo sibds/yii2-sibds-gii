@@ -242,7 +242,7 @@ class Generator extends \yii\gii\Generator
         $column = $tableSchema->columns[$attribute];
         if ($column->phpType === 'boolean') {
             return "\$form->field(\$model, '$attribute', ['template' => '{input}{label}{error}{hint}',])->
-widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]]) ?>";
+widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]])";
             //return "\$form->field(\$model, '$attribute')->checkbox()";
         } elseif ($column->type === 'text') {
             if($attribute === 'url') {
@@ -278,7 +278,7 @@ widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeSt
             } elseif ($column->phpType !== 'string' || $column->size === null) {
                 if (preg_match('/^(removed|locked)$/i', $column->name)) {
                     return "\$form->field(\$model, '$attribute', ['template' => '{input}{label}{error}{hint}',])->
-widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]]) ?>";
+widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeState' => false]])";
                     //return "\$form->field(\$model, '$attribute')->checkbox()";
                 } else {
                     return "\$form->field(\$model, '$attribute')->$input()";
