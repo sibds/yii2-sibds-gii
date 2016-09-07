@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateSt
             'body' => Module::t('catalog', Yii::$app->session->getFlash('update-success')),
             'showSeparator' => true,
             'delay' => 2000
-        ]) ?>
+        ]); ?>
 
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
