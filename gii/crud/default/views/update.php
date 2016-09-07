@@ -12,7 +12,7 @@ echo "<?php\n";
 $nameModule = $generator->generateString(' {modelClass}: ', ['modelClass' => Inflector::camel2words(StringHelper::basename($generator->modelClass))]);
 ?>
 
-use \yii\bootstrap\Alert;
+use kartik\alert\Alert;
 use \<?=$generator->getNamespace()?>Module;
 
 /* @var $this yii\web\View */
@@ -29,10 +29,12 @@ $this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateSt
     <?= "<?php " ?>
     if(\Yii::$app->session->hasFlash('success'))
         echo Alert::widget([
-            'options' => [
-                'class' => 'alert-success',
-            ],
-            'body' => Module::t('catalog', Yii::$app->session->getFlash('success')),
+            'type' => Alert::TYPE_SUCCESS,
+            'title' => 'Saved',
+            'icon' => 'glyphicon glyphicon-ok-sign',
+            'body' => Module::t('catalog', Yii::$app->session->getFlash('update-success')),
+            'showSeparator' => true,
+            'delay' => 2000
         ]) ?>
 
     <?= "<?= " ?>$this->render('_form', [
