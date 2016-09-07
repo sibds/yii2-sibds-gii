@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateSt
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
 
     <?= "<?php " ?>
-    if(\Yii::$app->session->hasFlash('success'))
+    if(\Yii::$app->session->hasFlash('update-success'))
         echo Alert::widget([
             'type' => Alert::TYPE_SUCCESS,
             'title' => 'Saved',
