@@ -12,7 +12,8 @@ echo "<?php\n";
 $nameModule = $generator->generateString(' {modelClass}: ', ['modelClass' => Inflector::camel2words(StringHelper::basename($generator->modelClass))]);
 ?>
 
-use yii\helpers\Html;
+use \yii\bootstrap\Alert;
+use \<?=$generator->getNamespace()?>Module;
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
@@ -24,6 +25,15 @@ if(!$model->isNewRecord)
 $this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateString('Create') ?>:<?= $generator->generateString('Update') ?>);
 ?>
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-update">
+
+    <?= "<?php " ?>
+    if(\Yii::$app->session->hasFlash('success'))
+        echo Alert::widget([
+            'options' => [
+                'class' => 'alert-success',
+            ],
+            'body' => Module::t('catalog', Yii::$app->session->getFlash('success')),
+        ]) ?>
 
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,
