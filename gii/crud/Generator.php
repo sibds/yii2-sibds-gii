@@ -579,4 +579,25 @@ widget(\\kartik\\checkbox\\CheckboxX::className(), ['pluginOptions' => ['threeSt
             return $model->attributes();
         }
     }
+    
+    /**
+     * @return string
+     */
+    public function getNamespace()
+    {
+        $result = '';
+
+        $length = min(strlen($this->modelClass), strlen($this->controllerClass));
+
+        for ($i = 0; $i < $length; $i++) {
+            if($this->modelClass[$i]==$this->controllerClass[$i])
+                $tmp = $this->modelClass[$i];
+            else
+                break;
+
+            $result .= $tmp;
+        }
+
+        return $result;
+    }
 }
