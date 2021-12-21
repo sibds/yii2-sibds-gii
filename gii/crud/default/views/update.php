@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = ($model->isNewRecord?<?= $generator->generateSt
             'type' => Alert::TYPE_SUCCESS,
             'title' => 'Saved',
             'icon' => 'glyphicon glyphicon-ok-sign',
-            'body' => Module::t('catalog', Yii::$app->session->getFlash('update-success')),
+            'body' => Module::t('form', Yii::$app->session->getFlash('update-success')),
             'showSeparator' => true,
             'delay' => 2000
         ]); ?>

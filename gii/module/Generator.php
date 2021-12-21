@@ -111,6 +111,14 @@ EOD;
             $this->render('message.php')
         );
         $files[] = new CodeFile(
+            $modulePath . '/messages/ru/form.php',
+            $this->render('form.php')
+        );
+        $files[] = new CodeFile(
+            $modulePath . '/messages/en/form.php',
+            $this->render('message.php')
+        );
+        $files[] = new CodeFile(
             $modulePath . '/messages/en/' . $this->moduleID . '.php',
             $this->render('message.php')
         );
